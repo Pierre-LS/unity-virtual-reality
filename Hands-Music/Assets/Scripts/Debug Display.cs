@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +7,14 @@ public class DebugDisplay : MonoBehaviour
 {
     Dictionary<string, string> debugLogs = new Dictionary<string, string>();
 
-    public TextMeshProUGUI display;
+    public Text display;
 
     private void Update()
     {
         Debug.Log("time: " + Time.time);
+        Debug.Log(" ");
         Debug.Log(gameObject.name);
+        Debug.Log(" ");
     }
 
     void OnEnable()

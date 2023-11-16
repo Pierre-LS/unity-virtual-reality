@@ -17,6 +17,7 @@ public class ScoreUpdate : MonoBehaviour
     void Start()
     {
         Debug.Log("Score: " + currentScore.ToString());
+        Debug.Log(" ");
     }
 
     public void IncreaseScore(int v)

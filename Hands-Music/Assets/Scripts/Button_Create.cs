@@ -10,6 +10,8 @@ public class Button_Create : MonoBehaviour
     public UnityEvent onPress;
     public UnityEvent onRelease;
 
+    public int currentBalls = 0;
+
     GameObject presser;
     bool isPressed;
 
@@ -17,6 +19,8 @@ public class Button_Create : MonoBehaviour
     void Start()
     {
         isPressed = false;
+        Debug.Log("Number of balls created: " + currentBalls.ToString());
+        Debug.Log(" ");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +49,7 @@ public class Button_Create : MonoBehaviour
         sphere.transform.localPosition = new Vector3(0, 1, 2);
         sphere.AddComponent<Rigidbody>();
         sphere.GetComponent<Renderer>().material = button.GetComponent<Renderer>().material;
-        Debug.Log("Sphere created?");
+        currentBalls++;
+        Debug.Log("Number of balls created: " + currentBalls.ToString());
     }
 }

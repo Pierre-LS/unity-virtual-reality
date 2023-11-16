@@ -37,7 +37,7 @@ public class LightUp : MonoBehaviour
             ObjectRenderer.material = TouchedColor;
             ScoreUpdate.instance.IncreaseScore(1);
             checkExtension.WentExtended = false;
-            Debug.Log("Extend your thumb again!");
+            Debug.Log("The thumb is extended:" + checkExtension.WentExtended);
         }
     }
 

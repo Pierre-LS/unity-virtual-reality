@@ -12,6 +12,7 @@ public class CheckExtension : MonoBehaviour
     {
         WentExtended = true;
         ThumbCollider = Thumb.GetComponent<Collider>();
+        Debug.Log("The thumb is extended:" + WentExtended);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +20,7 @@ public class CheckExtension : MonoBehaviour
         if (!WentExtended && other == ThumbCollider)
         {
             WentExtended = true;
-            Debug.Log("You extended your thumb correctly!");
+            Debug.Log("The thumb is extended:" + WentExtended);
         }
     }
 }
