@@ -1,0 +1,58 @@
+using System.Buffers;
+using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class Spawn_Flower : MonoBehaviour
+{
+    public List<GameObject> Fingers = new List<GameObject>(index, middle, ring, little);
+    public List<GameObject> Flowers = new List<GameObject>(Rose, lila, daisy, mushroom);
+    private List<Time> timestamps = new List<Time>(1.1,4.2,15.6);
+
+    public UnityEvent onPress;
+    public UnityEvent onRelease;
+
+    GameObject presser;
+    bool isPressed;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        isPressed = false;
+    }
+
+    private void Update()
+    {
+        if (Time is in {timestamps})
+        {
+            RandomNumber = RandomNumberGenerator(0,4);
+            Spawn flowers[RandomNumber] on Fingers[RandomNumber]
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isPressed)
+        {
+            presser = other.gameObject;
+            onPress.Invoke();
+            isPressed = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Time.start()
+        Audio.start()
+
+        if (other.gameObject ==  presser)
+        {
+            onRelease.Invoke();
+            isPressed=false;
+        }
+    }
+
+}
