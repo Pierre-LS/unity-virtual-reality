@@ -13,7 +13,6 @@ public class LightUp : MonoBehaviour
 
     Material UntouchedColor;
     Renderer ObjectRenderer;
-    Vector3 ExtendedPosition;
     Collider ThumbCollider;
 
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class LightUp : MonoBehaviour
     {
         ObjectRenderer = GetComponent<Renderer>();
         UntouchedColor = ObjectRenderer.material;
-        ExtendedPosition = Wrist.transform.InverseTransformPoint(Thumb.transform.position);
         ThumbCollider = Thumb.GetComponent<Collider>();
 
         if (ObjectRenderer == null)
