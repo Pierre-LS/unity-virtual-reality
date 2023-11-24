@@ -48,8 +48,8 @@ public class Main_Menu_Button : MonoBehaviour
         SceneManager.LoadSceneAsync("Simulation");
     }
 
-    public void SettingsButton()
+    public void MainMenuButton()
     {
-        Debug.Log("To Do");
+        SceneManager.LoadSceneAsync("Start Menu");
     }
 }
