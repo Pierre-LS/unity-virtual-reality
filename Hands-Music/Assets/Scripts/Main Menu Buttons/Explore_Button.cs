@@ -15,7 +15,7 @@ public class Explore_Button : MonoBehaviour
 
     private Vector3 full_scale = new Vector3(1f, 1f, 1f);
     private Vector3 no_scale = new Vector3(0.0001f, 0.0001f, 0.0001f);
-    private float pop_time = 1f;
+    private float pop_time = 0.5f;
     private float elapsed_time;
 
     private GameObject presser;
