@@ -379,7 +379,6 @@ GameObject:
   - component: {fileID: 408859791}
   - component: {fileID: 408859790}
   - component: {fileID: 408859789}
-  - component: {fileID: 408859793}
   - component: {fileID: 408859794}
   - component: {fileID: 408859795}
   m_Layer: 5
@@ -472,18 +471,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 799.9999, y: 456.0885}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &408859793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408859788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81c2089e11a4747a3a12f1823d1b94cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &408859794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explore_button_prefab: {fileID: 8540351996879775271, guid: ef366a553674c6a4d99a50c96174224a, type: 3}
-  exit_button_prefab: {fileID: 3655302834842202190, guid: 0bd15925c2d2aef44bf7f0d69b5c04ea, type: 3}
+  exit_button_prefab: {fileID: 8516012418595168845, guid: 0bd15925c2d2aef44bf7f0d69b5c04ea, type: 3}
 --- !u!4 &492967416
 Transform:
   m_ObjectHideFlags: 0

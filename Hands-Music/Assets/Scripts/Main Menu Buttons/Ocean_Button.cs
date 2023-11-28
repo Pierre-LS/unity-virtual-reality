@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class Ocean_Button : MonoBehaviour
 {

@@ -97,7 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forest_button_prefab: {fileID: 8027580764360900139, guid: 55c808962ddc658408e5d7507984f79e, type: 3}
   ocean_button_prefab: {fileID: 7541433741275907799, guid: 98c302e9f7679c045b0a15aca59ae0f6, type: 3}
-  back_button_prefab: {fileID: 8912873415524045612, guid: f28e48b5dd18ed24eade265efa5cf070, type: 3}
+  back_button_prefab: {fileID: 8142457508531968406, guid: 7d7ae9713ee17f646b308fb0152b91ca, type: 3}
+  target_camera: {fileID: 0}
 --- !u!1 &3978536151817937183
 GameObject:
   m_ObjectHideFlags: 0

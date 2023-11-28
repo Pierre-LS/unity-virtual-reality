@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using static UnityEngine.GraphicsBuffer;
 
 public class Back_Button : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class Back_Button : MonoBehaviour
 
     private Vector3 full_scale = new Vector3(1f, 1f, 1f);
     private Vector3 no_scale = new Vector3(0.0001f, 0.0001f, 0.0001f);
-    private float pop_time = 3f;
+    private float pop_time = 1f;
     private float elapsed_time;
 
     private GameObject presser;
@@ -28,7 +28,7 @@ public class Back_Button : MonoBehaviour
         menu_buttons = transform.parent.parent;
         isPressed = false;
         change_button = false;
-        elapsed_time = pop_time + 1f;
+        elapsed_time = pop_time + 0.1f;
     }
 
     private void Update()
@@ -36,12 +36,6 @@ public class Back_Button : MonoBehaviour
         if (change_button == true)
         {
             elapsed_time = 0;
-
-            explore_button = Instantiate(explore_button_prefab, new Vector3(0, -0.2f, 0), Quaternion.Euler(5, 0, 0));
-            explore_button.transform.SetParent(menu_buttons, false);
-
-            exit_button = Instantiate(exit_button_prefab, new Vector3(0, -0.2f, 0), Quaternion.Euler(5, 0, 0));
-            exit_button.transform.SetParent(menu_buttons, false);
 
             back_button = menu_buttons.Find("Back Button(Clone)").gameObject;
             Destroy(back_button, pop_time);
@@ -52,6 +46,12 @@ public class Back_Button : MonoBehaviour
             ocean_button = menu_buttons.Find("Ocean Button(Clone)").gameObject;
             Destroy(ocean_button, pop_time);
 
+            explore_button = Instantiate(explore_button_prefab, back_button.transform.localPosition, back_button.transform.localRotation);
+            explore_button.transform.SetParent(menu_buttons, false);
+
+            exit_button = Instantiate(exit_button_prefab, back_button.transform.localPosition, Quaternion.Euler(41, 29, 0));
+            exit_button.transform.SetParent(menu_buttons, false);
+
             change_button = false;
         }
 
@@ -61,17 +61,14 @@ public class Back_Button : MonoBehaviour
 
             exit_button.transform.localScale = Vector3.Lerp(no_scale, full_scale, elapsed_time / pop_time);
             exit_button.transform.localPosition = Vector3.Lerp(exit_button.transform.localPosition, new Vector3(0.25f, -0.3f, -0.07f), elapsed_time / pop_time);
-            exit_button.transform.localEulerAngles = Vector3.Lerp(exit_button.transform.localEulerAngles, new Vector3(20, 32, -8), elapsed_time / pop_time);
 
-            back_button.transform.localScale = Vector3.Lerp(explore_button.transform.localScale, no_scale, elapsed_time / pop_time);
+            back_button.transform.localScale = Vector3.Lerp(back_button.transform.localScale, no_scale, elapsed_time / pop_time);
 
             forest_button.transform.localScale = Vector3.Lerp(forest_button.transform.localScale, no_scale, elapsed_time / pop_time);
-            forest_button.transform.localPosition = Vector3.Lerp(forest_button.transform.localPosition, new Vector3(0, -0.2f, 0), elapsed_time / pop_time);
-            forest_button.transform.localEulerAngles = Vector3.Lerp(forest_button.transform.localEulerAngles, new Vector3(5, 0, 0), elapsed_time / pop_time);
+            forest_button.transform.localPosition = Vector3.Lerp(forest_button.transform.localPosition, explore_button.transform.localPosition, elapsed_time / pop_time);
 
             ocean_button.transform.localScale = Vector3.Lerp(ocean_button.transform.localScale, no_scale, elapsed_time / pop_time);
-            ocean_button.transform.localPosition = Vector3.Lerp(ocean_button.transform.localPosition, new Vector3(0, -0.2f, 0), elapsed_time / pop_time);
-            ocean_button.transform.localEulerAngles = Vector3.Lerp(ocean_button.transform.localEulerAngles, new Vector3(5, 0, 0), elapsed_time / pop_time);
+            ocean_button.transform.localPosition = Vector3.Lerp(ocean_button.transform.localPosition, explore_button.transform.localPosition, elapsed_time / pop_time);
 
             elapsed_time += Time.deltaTime;
         }
