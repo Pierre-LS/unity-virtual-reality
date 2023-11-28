@@ -2339,7 +2339,7 @@ PrefabInstance:
       addedObject: {fileID: 1147706815}
     - targetCorrespondingSourceObject: {fileID: 2130331532155778800, guid: d661f645c81f29b4aa596207971ae441, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1147706814}
+      addedObject: {fileID: 1147706816}
   m_SourcePrefab: {fileID: 100100000, guid: d661f645c81f29b4aa596207971ae441, type: 3}
 --- !u!4 &1147706812 stripped
 Transform:
@@ -2351,36 +2351,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2130331532155778800, guid: d661f645c81f29b4aa596207971ae441, type: 3}
   m_PrefabInstance: {fileID: 1147706811}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1147706814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147706813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e67650ad5f80447ac2d3d63f46ad87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onPress:
-    m_PersistentCalls:
-      m_Calls: []
-  onRelease:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1147706814}
-        m_TargetAssemblyTypeName: Main_Menu_Button, Assembly-CSharp
-        m_MethodName: MainMenuButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!54 &1147706815
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2408,6 +2378,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1147706816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147706813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a1d9887fb74ff46934a223df0a0df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPress:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1147706816}
+        m_TargetAssemblyTypeName: Game_Buttons, Assembly-CSharp
+        m_MethodName: MainMenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1217298339 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2130331532155778800, guid: d661f645c81f29b4aa596207971ae441, type: 3}
