@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreUpdate : MonoBehaviour
 {
@@ -8,22 +7,24 @@ public class ScoreUpdate : MonoBehaviour
 
     public int currentScore = 0;
 
-    private void Awake()
-    {
-        instance = this;
-    }
+    private GameObject Score_Show;
+    private Text Score_Show_Text;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Score: " + currentScore.ToString());
-        Debug.Log(" ");
+        currentScore = 0;
+
+        Score_Show = GameObject.Find("/Table/Score/Text (Legacy)");
+        Score_Show_Text = Score_Show.GetComponent<Text>();
+        Score_Show_Text.text = "Score: " + currentScore.ToString();
     }
 
     public void IncreaseScore(int v)
     {
         currentScore += v;
-        Debug.Log("Score: " + currentScore.ToString());
+        Score_Show_Text.text = "Score: " + currentScore.ToString();
     }
 }
 

@@ -42,4 +42,9 @@ public class Game_Buttons : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("Start Menu");
     }
+
+    public void ReInitializeButton()
+    {
+        SceneManager.LoadSceneAsync("Initialization");
+    }
 }

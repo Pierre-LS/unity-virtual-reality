@@ -1,4 +1,4 @@
-using System;
+    using System;
 using UnityEngine.XR.Interaction.Toolkit.Utilities.Tweenables.Primitives;
 
 namespace UnityEngine.XR.Interaction.Toolkit.Samples.Hands
@@ -15,7 +15,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.Hands
         [SerializeField]
         [Range(0f, 30f)]
         [Tooltip("Set to 0 for no smoothing. Higher values indicate more smoothing.")]
-        float m_SmoothFollowSpeed = 8f;
+        float m_SmoothFollowSpeed = 0f;
 
         Rigidbody m_Rigidbody;
 

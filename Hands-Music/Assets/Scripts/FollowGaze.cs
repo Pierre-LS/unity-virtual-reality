@@ -6,6 +6,7 @@ public class FollowGaze : MonoBehaviour
 
     private float SmoothSpeed = 0.3f;
     public float distanceToHead = 0.3f;
+    public float HeightDifference = 0.1f;
 
     private Vector3 velocity = Vector3.zero;
 
@@ -18,15 +19,9 @@ public class FollowGaze : MonoBehaviour
         var currentPos = transform.position;
 
         // target is in the same direction but offsetRadius from the center
-        var targetPosition = new Vector3(Camera2Follow.transform.position.x + distanceToHead*Mathf.Sin(Mathf.Deg2Rad * Camera2Follow.transform.eulerAngles.y), Camera2Follow.transform.position.y - 0.1f, Camera2Follow.transform.position.z + distanceToHead * Mathf.Cos(Mathf.Deg2Rad * Camera2Follow.transform.eulerAngles.y));
+        var targetPosition = new Vector3(Camera2Follow.transform.position.x + distanceToHead*Mathf.Sin(Mathf.Deg2Rad * Camera2Follow.transform.eulerAngles.y), Camera2Follow.transform.position.y - HeightDifference, Camera2Follow.transform.position.z + distanceToHead * Mathf.Cos(Mathf.Deg2Rad * Camera2Follow.transform.eulerAngles.y));
 
         // finally interpolate towards this position
         transform.position = Vector3.SmoothDamp(currentPos, targetPosition, ref velocity, SmoothSpeed);
-
-        //Vector3 desiredPosition = Camera2Follow.position + offset;
-        //Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, SmoothSpeed);
-        //transform.position = smoothedPosition;
-
-        //transform.LookAt(Camera2Follow);
     }
 }
