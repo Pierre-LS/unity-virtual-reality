@@ -18,12 +18,10 @@ public class ScoreUpdate : MonoBehaviour
 
         Score_Show = GameObject.Find("/Table/Score/Text (Legacy)");
         Score_Show_Text = Score_Show.GetComponent<Text>();
-        Score_Show_Text.text = "Score: " + currentScore.ToString();
     }
 
-    public void IncreaseScore(int v)
+    private void Update()
     {
-        currentScore += v;
         Score_Show_Text.text = "Score: " + currentScore.ToString();
     }
 }

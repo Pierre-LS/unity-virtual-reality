@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
 
 public class Ocean_Button : MonoBehaviour
 {
     private GameObject presser;
     private bool isPressed;
+    private float start_timer;
+    private float press_time = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class Ocean_Button : MonoBehaviour
     {
         if (!isPressed)
         {
+            start_timer = Time.time;
             presser = other.gameObject;
             isPressed = true;
         }
@@ -24,10 +26,11 @@ public class Ocean_Button : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == presser)
+        if (other.gameObject == presser && Time.time - start_timer > press_time)
         {
             SceneManager.LoadSceneAsync("Simulation");
             isPressed = false;
         }
     }
 }
+

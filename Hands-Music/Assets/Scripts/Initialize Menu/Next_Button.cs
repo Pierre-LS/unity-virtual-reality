@@ -35,7 +35,9 @@ public class Next_Button : MonoBehaviour
 
     IEnumerator waiter()
     {
-        //Wait for 1 seconds
-        yield return new WaitForSeconds(1);
+        GetComponent<Collider>().enabled = false;
+        //Wait for 2 seconds
+        yield return new WaitForSeconds(2);
+        GetComponent<Collider>().enabled = true;
     }
 }

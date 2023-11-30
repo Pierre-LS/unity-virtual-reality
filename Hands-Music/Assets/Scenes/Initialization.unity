@@ -1117,9 +1117,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcome To
-
-    Virtual Vitality'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7418e6e9cfecb15458ff4a67e720232e, type: 2}
   m_sharedMaterial: {fileID: 3344209268862251521, guid: 7418e6e9cfecb15458ff4a67e720232e, type: 2}

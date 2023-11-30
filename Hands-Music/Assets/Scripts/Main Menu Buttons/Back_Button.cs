@@ -1,5 +1,5 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using System.Collections;
 
 public class Back_Button : MonoBehaviour
 {
@@ -8,7 +8,9 @@ public class Back_Button : MonoBehaviour
 
     private Transform menu_buttons;
     private GameObject explore_button;
+    private GameObject explore_button_collider;
     private GameObject exit_button;
+    private GameObject exit_button_collider;
     private GameObject forest_button;
     private GameObject ocean_button;
     private GameObject back_button;
@@ -48,9 +50,13 @@ public class Back_Button : MonoBehaviour
 
             explore_button = Instantiate(explore_button_prefab, back_button.transform.localPosition, back_button.transform.localRotation);
             explore_button.transform.SetParent(menu_buttons, false);
+            explore_button_collider = GameObject.Find("/Buttons/Explore Button(Clone)/PokeCollider");
 
             exit_button = Instantiate(exit_button_prefab, back_button.transform.localPosition, Quaternion.Euler(41, 29, 0));
             exit_button.transform.SetParent(menu_buttons, false);
+            exit_button_collider = GameObject.Find("/Buttons/Exit Button(Clone)/PokeCollider");
+
+            StartCoroutine(waiter());
 
             change_button = false;
         }
@@ -90,5 +96,14 @@ public class Back_Button : MonoBehaviour
             change_button = true;
             isPressed = false;
         }
+    }
+    IEnumerator waiter()
+    {
+        explore_button_collider.GetComponent<Collider>().enabled = false;
+        exit_button_collider.GetComponent<Collider>().enabled = false;
+        //Wait for 2 seconds
+        yield return new WaitForSeconds(2);
+        explore_button_collider.GetComponent<Collider>().enabled = true;
+        exit_button_collider.GetComponent<Collider>().enabled = true;
     }
 }

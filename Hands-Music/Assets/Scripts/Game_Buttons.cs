@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -12,6 +9,8 @@ public class Game_Buttons : MonoBehaviour
 
     private GameObject presser;
     private bool isPressed;
+    private float start_timer;
+    private float press_time = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +22,7 @@ public class Game_Buttons : MonoBehaviour
     {
         if (!isPressed)
         {
+            start_timer = Time.time;
             presser = other.gameObject;
             onPress.Invoke();
             isPressed = true;
@@ -31,7 +31,7 @@ public class Game_Buttons : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == presser)
+        if (other.gameObject == presser && Time.time - start_timer > press_time)
         {
             onRelease.Invoke();
             isPressed = false;

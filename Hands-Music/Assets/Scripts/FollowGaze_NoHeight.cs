@@ -10,16 +10,20 @@ public class FollowGaze_NoHeight : MonoBehaviour
     private Vector3 velocity1 = Vector3.zero;
     private Vector3 velocity2 = Vector3.zero;
 
-    private void Start()
+    void Start()
     {
-        // Make the UI always face towards the camera
-        var currentAng = transform.eulerAngles;
-        var targetAngle = new Vector3(transform.eulerAngles.x, Camera2Follow.transform.eulerAngles.y, transform.eulerAngles.z);
-        transform.rotation = Quaternion.Euler(Vector3.SmoothDamp(currentAng, targetAngle, ref velocity1, SmoothSpeed));
+        // Make the UI face towards the camera
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera2Follow.transform.eulerAngles.y, transform.eulerAngles.z);
+    }
+
+    void OnEnable()
+    {
+        // Make the UI face towards the camera
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera2Follow.transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         // Interpolate towards this position
         var currentPos = transform.position;

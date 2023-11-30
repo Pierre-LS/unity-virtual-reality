@@ -6,6 +6,7 @@ public class LightUp : MonoBehaviour
     public GameObject Thumb;
     public GameObject Wrist;
     public CheckExtension checkExtension;
+    public ScoreUpdate score_script;
 
     Material UntouchedColor;
     Renderer ObjectRenderer;
@@ -29,7 +30,7 @@ public class LightUp : MonoBehaviour
         if (other == ThumbCollider && checkExtension.WentExtended)
         {
             ObjectRenderer.material = TouchedColor;
-            ScoreUpdate.instance.IncreaseScore(1);
+            score_script.currentScore++;
             checkExtension.WentExtended = false;
             Debug.Log("The thumb is extended:" + checkExtension.WentExtended);
         }

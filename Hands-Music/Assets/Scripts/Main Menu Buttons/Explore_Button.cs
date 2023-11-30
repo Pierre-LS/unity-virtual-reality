@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Explore_Button : MonoBehaviour
@@ -10,8 +11,11 @@ public class Explore_Button : MonoBehaviour
     private GameObject explore_button;
     private GameObject exit_button;
     private GameObject forest_button;
+    private GameObject forest_button_collider;
     private GameObject ocean_button;
+    private GameObject ocean_button_collider;
     private GameObject back_button;
+    private GameObject back_button_collider;
 
     private Vector3 full_scale = new Vector3(1f, 1f, 1f);
     private Vector3 no_scale = new Vector3(0.0001f, 0.0001f, 0.0001f);
@@ -45,12 +49,17 @@ public class Explore_Button : MonoBehaviour
 
             forest_button = Instantiate(forest_button_prefab, explore_button.transform.localPosition, Quaternion.Euler(5, 20, 0));
             forest_button.transform.SetParent(menu_buttons, false);
+            forest_button_collider = GameObject.Find("/Buttons/Forest Button(Clone)/PokeCollider");
 
             ocean_button = Instantiate(ocean_button_prefab, explore_button.transform.localPosition, Quaternion.Euler(5, -20, 0));
             ocean_button.transform.SetParent(menu_buttons, false);
+            ocean_button_collider = GameObject.Find("/Buttons/Ocean Button(Clone)/PokeCollider");
 
             back_button = Instantiate(back_button_prefab, explore_button.transform.localPosition, explore_button.transform.localRotation);
             back_button.transform.SetParent(menu_buttons, false);
+            back_button_collider = GameObject.Find("/Buttons/Back Button(Clone)/PokeCollider");
+
+            StartCoroutine(waiter());
 
             change_button = false;
         }
@@ -90,5 +99,16 @@ public class Explore_Button : MonoBehaviour
             change_button = true;
             isPressed = false;
         }
+    }
+    IEnumerator waiter()
+    {
+        forest_button_collider.GetComponent<Collider>().enabled = false;
+        ocean_button_collider.GetComponent<Collider>().enabled = false;
+        back_button_collider.GetComponent<Collider>().enabled = false;
+        //Wait for 2 seconds
+        yield return new WaitForSeconds(2);
+        forest_button_collider.GetComponent<Collider>().enabled = true;
+        ocean_button_collider.GetComponent<Collider>().enabled = true;
+        back_button_collider.GetComponent<Collider>().enabled = true;
     }
 }
