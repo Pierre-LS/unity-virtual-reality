@@ -8,9 +8,10 @@ public class LightUp : MonoBehaviour
     public CheckExtension checkExtension;
     public ScoreUpdate score_script;
 
-    Material UntouchedColor;
-    Renderer ObjectRenderer;
-    Collider ThumbCollider;
+    private Material UntouchedColor;
+    private Renderer ObjectRenderer;
+    private Collider ThumbCollider;
+    private GameObject ExtendedThumb;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,8 @@ public class LightUp : MonoBehaviour
         ObjectRenderer = GetComponent<Renderer>();
         UntouchedColor = ObjectRenderer.material;
         ThumbCollider = Thumb.GetComponent<Collider>();
+
+        ExtendedThumb = GameObject.Find("/XR Interaction Hands Setup/XR Origin (XR Rig)/Camera Offset/Left Hand/Left Hand Interaction Visual/L_Wrist/ExtendedThumb");
 
         if (ObjectRenderer == null)
         {
@@ -31,6 +34,8 @@ public class LightUp : MonoBehaviour
         {
             ObjectRenderer.material = TouchedColor;
             score_script.currentScore++;
+
+            ExtendedThumb.SetActive(true);
             checkExtension.WentExtended = false;
             Debug.Log("The thumb is extended:" + checkExtension.WentExtended);
         }

@@ -28,7 +28,7 @@ public class Ocean_Button : MonoBehaviour
     {
         if (other.gameObject == presser && Time.time - start_timer > press_time)
         {
-            SceneManager.LoadSceneAsync("Simulation");
+            SceneManager.LoadSceneAsync("Ocean");
             isPressed = false;
         }
     }

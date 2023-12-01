@@ -8,12 +8,15 @@ public class Back_Button : MonoBehaviour
 
     private Transform menu_buttons;
     private GameObject explore_button;
-    private GameObject explore_button_collider;
+    private Collider explore_button_collider;
     private GameObject exit_button;
-    private GameObject exit_button_collider;
+    private Collider exit_button_collider;
     private GameObject forest_button;
+    private Collider forest_button_collider;
     private GameObject ocean_button;
+    private Collider ocean_button_collider;
     private GameObject back_button;
+    private Collider back_button_collider;
 
     private Vector3 full_scale = new Vector3(1f, 1f, 1f);
     private Vector3 no_scale = new Vector3(0.0001f, 0.0001f, 0.0001f);
@@ -40,21 +43,27 @@ public class Back_Button : MonoBehaviour
             elapsed_time = 0;
 
             back_button = menu_buttons.Find("Back Button(Clone)").gameObject;
-            Destroy(back_button, pop_time);
+            back_button_collider = GameObject.Find("/Buttons/Back Button(Clone)/PokeCollider").GetComponent<Collider>();
+            back_button_collider.enabled = false;
+            Destroy(back_button, pop_time + 0.3f);
 
             forest_button = menu_buttons.Find("Forest Button(Clone)").gameObject;
-            Destroy(forest_button, pop_time);
+            forest_button_collider = GameObject.Find("/Buttons/Forest Button(Clone)/PokeCollider").GetComponent<Collider>();
+            forest_button_collider.enabled = false;
+            Destroy(forest_button, pop_time + 0.3f);
 
             ocean_button = menu_buttons.Find("Ocean Button(Clone)").gameObject;
-            Destroy(ocean_button, pop_time);
+            ocean_button_collider = GameObject.Find("/Buttons/Ocean Button(Clone)/PokeCollider").GetComponent<Collider>();
+            ocean_button_collider.enabled = false;
+            Destroy(ocean_button, pop_time + 0.3f);
 
             explore_button = Instantiate(explore_button_prefab, back_button.transform.localPosition, back_button.transform.localRotation);
             explore_button.transform.SetParent(menu_buttons, false);
-            explore_button_collider = GameObject.Find("/Buttons/Explore Button(Clone)/PokeCollider");
+            explore_button_collider = GameObject.Find("/Buttons/Explore Button(Clone)/PokeCollider").GetComponent<Collider>();
 
             exit_button = Instantiate(exit_button_prefab, back_button.transform.localPosition, Quaternion.Euler(41, 29, 0));
             exit_button.transform.SetParent(menu_buttons, false);
-            exit_button_collider = GameObject.Find("/Buttons/Exit Button(Clone)/PokeCollider");
+            exit_button_collider = GameObject.Find("/Buttons/Exit Button(Clone)/PokeCollider").GetComponent<Collider>();
 
             StartCoroutine(waiter());
 
@@ -99,11 +108,11 @@ public class Back_Button : MonoBehaviour
     }
     IEnumerator waiter()
     {
-        explore_button_collider.GetComponent<Collider>().enabled = false;
-        exit_button_collider.GetComponent<Collider>().enabled = false;
-        //Wait for 2 seconds
-        yield return new WaitForSeconds(2);
-        explore_button_collider.GetComponent<Collider>().enabled = true;
-        exit_button_collider.GetComponent<Collider>().enabled = true;
+        explore_button_collider.enabled = false;
+        exit_button_collider.enabled = false;
+        //Wait for 0.7 seconds
+        yield return new WaitForSeconds(0.7f);
+        explore_button_collider.enabled = true;
+        exit_button_collider.enabled = true;
     }
 }

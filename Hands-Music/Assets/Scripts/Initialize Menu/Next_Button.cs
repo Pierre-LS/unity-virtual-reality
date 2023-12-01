@@ -7,11 +7,13 @@ public class Next_Button : MonoBehaviour
 
     private GameObject presser;
     private bool isPressed;
+    private Collider button_collider;
 
     // Start is called before the first frame update
     void Start()
     {
         isPressed = false;
+        button_collider = GetComponent<Collider>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,9 +37,9 @@ public class Next_Button : MonoBehaviour
 
     IEnumerator waiter()
     {
-        GetComponent<Collider>().enabled = false;
+        button_collider.enabled = false;
         //Wait for 2 seconds
         yield return new WaitForSeconds(2);
-        GetComponent<Collider>().enabled = true;
+        button_collider.enabled = true;
     }
 }

@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Menu.unity
     guid: 226632ab1154a42bf8fe6a52aead1bfa
   - enabled: 1
-    path: Assets/Scenes/Simulation.unity
+    path: Assets/Scenes/Forest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Ocean.unity
+    guid: 160fd3e6fad1fab4ebac8fc32764330a
   - enabled: 1
     path: Assets/Scenes/Initialization.unity
     guid: e9b835cda52333243ab7427ae92aa29f
