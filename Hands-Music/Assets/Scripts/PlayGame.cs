@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.Extensions.ContentScrollSnapHorizontal.MoveInfo;
 
 public class PlayGame : MonoBehaviour
 {
@@ -10,6 +8,18 @@ public class PlayGame : MonoBehaviour
 
     private GameObject table;
     private FollowGaze_NoHeight table_script;
+
+    private GameObject hand_position;
+    private GameObject wrist_position;
+
+    private Vector3 velocity1 = Vector3.zero;
+    private Vector3 velocity2 = Vector3.zero;
+    private Vector3 velocity3 = Vector3.zero;
+    private Vector3 velocity4 = Vector3.zero;
+    private Vector3 velocity5 = Vector3.zero;
+    private Vector3 velocity6 = Vector3.zero;
+    private Vector3 velocity7 = Vector3.zero;
+    private Vector3 velocity8 = Vector3.zero;
 
     private GameObject palm_position;
     private BoxCollider palm_position_collider;
@@ -23,6 +33,7 @@ public class PlayGame : MonoBehaviour
     private float elapsed_time;
     private float game_start_time;
     private bool started_game;
+    private bool get_squished;
 
     public List<float> finger1_trigger;
     public List<float> finger2_trigger;
@@ -53,6 +64,9 @@ public class PlayGame : MonoBehaviour
         table = GameObject.Find ("/Table");
         table_script = table.GetComponent<FollowGaze_NoHeight>();
 
+        hand_position = GameObject.Find("/Table/RightHand/RightHand");
+        wrist_position = GameObject.Find("/Table/RightHand/R_Wrist");
+
         palm_position = GameObject.Find("/Table/RightHand/R_Wrist/R_Palm");
         palm_position_collider = palm_position.GetComponent<BoxCollider>();
         palm_position_collider.size = new Vector3(0.07f, 0.04f, 0.1f);
@@ -64,6 +78,7 @@ public class PlayGame : MonoBehaviour
         objectsListArray = Resources.LoadAll(objectType, typeof(GameObject));
 
         started_game = false;
+        get_squished  = false;
 
         finger1_num = 0;
         finger2_num = 0;
@@ -73,7 +88,7 @@ public class PlayGame : MonoBehaviour
 
     private void Update()
     {
-        if (elapsed_time > 3f)
+        if (elapsed_time > 2f)
         {
             if (!started_game)
             {
@@ -82,7 +97,6 @@ public class PlayGame : MonoBehaviour
                 finger3_num = 0;
                 finger4_num = 0;
 
-                palm_position_collider.size = new Vector3(0.19f, 0.04f, 0.22f);
                 background_music.Pause();
                 game_music.Play();
                 game_start_time = Time.time;
@@ -91,8 +105,8 @@ public class PlayGame : MonoBehaviour
 
             if (Time.time - game_start_time > finger1_trigger[finger1_num] - 3f)
             {
-                GameObject objectToAppear = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
-                GameObject newObject1 = Instantiate(objectToAppear, Vector3.zero, Quaternion.identity);
+                GameObject objectToAppear1 = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
+                GameObject newObject1 = Instantiate(objectToAppear1, Vector3.zero, Quaternion.identity);
                 newObject1.transform.SetParent(indexTip, true);
                 newObject1.transform.localPosition = new Vector3(0f, -0.1f, 0f);
                 newObject1.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
@@ -101,8 +115,8 @@ public class PlayGame : MonoBehaviour
 
             if (Time.time - game_start_time > finger2_trigger[finger2_num] - 3f)
             {
-                GameObject objectToAppear = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
-                GameObject newObject2 = Instantiate(objectToAppear, Vector3.zero, Quaternion.identity);
+                GameObject objectToAppear2 = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
+                GameObject newObject2 = Instantiate(objectToAppear2, Vector3.zero, Quaternion.identity);
                 newObject2.transform.SetParent(middleTip, true);
                 newObject2.transform.localPosition = new Vector3(0f, -0.1f, 0f);
                 newObject2.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
@@ -111,8 +125,8 @@ public class PlayGame : MonoBehaviour
 
             if (Time.time - game_start_time > finger3_trigger[finger3_num] - 3f)
             {
-                GameObject objectToAppear = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
-                GameObject newObject3 = Instantiate(objectToAppear, Vector3.zero, Quaternion.identity);
+                GameObject objectToAppear3 = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
+                GameObject newObject3 = Instantiate(objectToAppear3, Vector3.zero, Quaternion.identity);
                 newObject3.transform.SetParent(ringTip, true);
                 newObject3.transform.localPosition = new Vector3(0f, -0.1f, 0f);
                 newObject3.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
@@ -121,8 +135,8 @@ public class PlayGame : MonoBehaviour
 
             if (Time.time - game_start_time > finger4_trigger[finger4_num] - 3f)
             {
-                GameObject objectToAppear = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
-                GameObject newObject4 = Instantiate(objectToAppear, Vector3.zero, Quaternion.identity);
+                GameObject objectToAppear4 = (GameObject)objectsListArray[Random.Range(0, objectsListArray.Length)];
+                GameObject newObject4 = Instantiate(objectToAppear4, Vector3.zero, Quaternion.identity);
                 newObject4.transform.SetParent(littleTip, true);
                 newObject4.transform.localPosition = new Vector3(0f, -0.1f, 0f);
                 newObject4.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
@@ -137,6 +151,24 @@ public class PlayGame : MonoBehaviour
                 background_music.Play();
             }
         }
+
+        if (get_squished == true)
+        {
+            palm_position_collider.size = Vector3.SmoothDamp(palm_position_collider.size, new Vector3(palm_position_collider.size.x, 4f, palm_position_collider.size.z), ref velocity1, 0.8f);
+            palm_position_collider.center = Vector3.SmoothDamp(palm_position_collider.center, new Vector3(palm_position_collider.center.x, 0.015f, palm_position_collider.center.z), ref velocity2, 0.8f);
+
+            wrist_position.transform.localScale = Vector3.SmoothDamp(wrist_position.transform.localScale, new Vector3(1f, 0.01f, 1f), ref velocity3, 0.8f);
+            wrist_position.transform.localPosition = Vector3.SmoothDamp(wrist_position.transform.localPosition, new Vector3(wrist_position.transform.localPosition.x, -0.015f, wrist_position.transform.localPosition.z), ref velocity4, 0.8f);
+        }
+
+        if (get_squished == false)
+        {
+            palm_position_collider.size = Vector3.SmoothDamp(palm_position_collider.size, new Vector3(palm_position_collider.size.x, 0.04f, palm_position_collider.size.z), ref velocity5, 0.8f);
+            palm_position_collider.center = Vector3.SmoothDamp(palm_position_collider.center, new Vector3(palm_position_collider.center.x, 0f, palm_position_collider.center.z), ref velocity6, 0.8f);
+
+            wrist_position.transform.localScale = Vector3.SmoothDamp(wrist_position.transform.localScale, new Vector3(1f, 1f, 1f), ref velocity7, 0.8f);
+            wrist_position.transform.localPosition = Vector3.SmoothDamp(wrist_position.transform.localPosition, new Vector3(wrist_position.transform.localPosition.x, 0f, wrist_position.transform.localPosition.z), ref velocity8, 0.8f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -145,6 +177,9 @@ public class PlayGame : MonoBehaviour
         {
             elapsed_time = 0f;
             table_script.enabled = false;
+
+            hand_position.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(14f,71f,191f, 1f) * 5);
+            get_squished = true;
         }
     }
 
@@ -162,7 +197,10 @@ public class PlayGame : MonoBehaviour
         {
             elapsed_time = 0f;
             table_script.enabled = true;
-            palm_position_collider.size = new Vector3(0.07f, 0.04f, 0.1f);
+
+            hand_position.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(14f, 71f, 191f, 1f) * 0);
+            get_squished = false;
+
             started_game = false;
             game_music.Stop();
             background_music.Play();
